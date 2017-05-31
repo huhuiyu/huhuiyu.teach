@@ -12,6 +12,12 @@ namespace WeiBo.Controllers
     public class UserController : Controller
     {
 
+        public ActionResult Index()
+        {
+            UserModel model = new UserModel();
+            return View(model);
+        }
+
         public ActionResult ToReg()
         {
             UserModel model = new UserModel();
@@ -50,18 +56,13 @@ namespace WeiBo.Controllers
             {
                 model.Message = ex.Message;
             }
-            return RedirectToRoute(new
-            {
-                controller = "Default",
-                action = "Index",
-                Message = model.Message
-            });
+            return View("Index", model);
         }
 
         public ActionResult Logout()
         {
             Session.Remove("LoginUser");
-            return RedirectToAction("Index", "Default");
+            return RedirectToAction("Index", "User");
         }
 
     }

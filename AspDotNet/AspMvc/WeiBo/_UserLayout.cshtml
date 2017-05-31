@@ -6,14 +6,6 @@
     <title>@Page.Title</title>
     <link rel="stylesheet" href="~/Content/lib/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Content/lib/css/font-awesome.min.css" />
-    <style type="text/css">
-        #userframe {
-            border: 0px;
-            width: 100%;
-            height: 70px;
-            overflow: hidden;
-        }
-    </style>
     @RenderSection("Style", false)
     <script type="text/javascript" src="~/Scripts/lib/jquery.min.js"></script>
     <script type="text/javascript" src="~/Scripts/lib/bootstrap.min.js"></script>
@@ -22,9 +14,6 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12">
-                <iframe id="userframe" src="~/User/Index"></iframe>
-            </div>
             <div class="col-xs-12">
                 @RenderBody()
             </div>

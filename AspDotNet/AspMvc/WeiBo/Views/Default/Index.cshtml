@@ -1,8 +1,6 @@
 ﻿@{
     Page.Title = "微博";
     Layout = "~/_MainLayout.cshtml";
-    WeiBo.dal.entity.TblUser LoginUser
-        = (WeiBo.dal.entity.TblUser)Session["LoginUser"];
 }
 @section JavaScript{
     <script type="text/javascript">
@@ -12,38 +10,6 @@
         }
     </script>
 }
-<div class="text-right">
-    @if (LoginUser == null)
-    {
-        <form action="~/User/Login" method="post" class="form-inline">
-            <div class="form-group">
-                <label>
-                    用户名：
-                    <input type="text" name="User.Username"
-                        class="form-control" />
-                </label>
-            </div>
-            <div class="form-group">
-                <label>
-                    密码：
-                    <input type="password" name="User.Password"
-                        class="form-control" />
-                </label>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="登陆" class="btn btn-info" />
-                <a href="~/User/ToReg" class="btn btn-info">注册</a>
-            </div>
-        </form>
-        <div class="text-right text-danger">@Model.Message</div>
-    }
-    @if (LoginUser != null)
-    {
-        <i class="fa fa-user-o"></i><span>-@LoginUser.Nickname</span>
-        <a href="~/User/Logout">退出登陆</a>
-    }
-
-</div>
 <div class="jumbotron">
     <h3><i class="fa fa-user-o"></i>欢迎光临微博</h3>
 </div>
@@ -67,16 +33,15 @@
         }
     </tbody>
 </table>
-<div class="text-center">
-    <nav>
+@if (Model.PageInfo.PageCount > 1)
+{
+    <nav class="text-center">
         <ul class="pager">
             <li>
-                <a href="javascript:void(0)"
-                    onclick="ToPage(1);">第一页</a>
+                <a href="javascript:void(0)" onclick="ToPage(1);">第一页</a>
             </li>
             <li>
-                <a href="javascript:void(0)" 
-                        onclick="ToPage(@Model.PageInfo.PageNumber-1);">上一页</a>
+                <a href="javascript:void(0)" onclick="ToPage(@Model.PageInfo.PageNumber-1);">上一页</a>
             </li>
             <li>
                 <span>总记录：@Model.PageInfo.Count
@@ -95,13 +60,11 @@
                 </span>
             </li>
             <li>
-                <a href="javascript:void(0)" 
-                        onclick="ToPage(@Model.PageInfo.PageNumber+1);">下一页</a>
+                <a href="javascript:void(0)" onclick="ToPage(@Model.PageInfo.PageNumber+1);">下一页</a>
             </li>
             <li>
-                <a href="javascript:void(0)" 
-                        onclick="ToPage(@Model.PageInfo.PageCount);">最后一页</a>
+                <a href="javascript:void(0)" onclick="ToPage(@Model.PageInfo.PageCount);">最后一页</a>
             </li>
         </ul>
     </nav>
-</div>
+}

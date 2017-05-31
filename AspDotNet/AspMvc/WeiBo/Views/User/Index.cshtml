@@ -1,0 +1,38 @@
+﻿@{
+    Page.Title = "用户信息";
+    Layout = "~/_UserLayout.cshtml";
+    WeiBo.dal.entity.TblUser LoginUser
+       = (WeiBo.dal.entity.TblUser)Session["LoginUser"];
+}
+<div class="text-right">
+    @if (LoginUser == null)
+    {
+        <form action="~/User/Login" method="post" class="form-inline">
+            <div class="form-group">
+                <label>
+                    用户名：
+                    <input type="text" name="User.Username"
+                        class="form-control" />
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    密码：
+                    <input type="password" name="User.Password"
+                        class="form-control" />
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="登陆" class="btn btn-info" />
+                <a href="~/User/ToReg" target="_top" class="btn btn-info">注册</a>
+            </div>
+            <div class="form-group"><span class="text-danger">@Model.Message</span></div>
+        </form>
+    }
+    else
+    {
+        <i class="fa fa-user-o"></i><span>-@LoginUser.Nickname</span>
+        <a href="~/User/Logout">退出登陆</a>
+    }
+</div>
+
