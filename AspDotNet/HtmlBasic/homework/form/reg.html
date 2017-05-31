@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="../css/common.css" />
+    <style type="text/css">
+        .form {
+            width: 100%;
+            height: 250px;
+        }
+
+        .div-left {
+            width: 120px;
+            text-align: right;
+        }
+
+        .div-right {
+            width: 280px;
+            text-align: left;
+        }
+
+        .div-left, .div-right {
+            float: left;
+            margin: 10px 0px;
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="center-div radius-div">
+        <form action="Reg.aspx" method="post" class="form">
+            <h4 class="tc" style="padding-top: 20px;">用户注册</h4>
+            <div>
+                <div class="div-left">用户名：</div>
+                <div class="div-left">
+                    <input type="text" name="username" />
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="div-left">密码：</div>
+                <div class="div-left">
+                    <input type="password" name="password" />
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div>
+                <div class="div-left">确认密码：</div>
+                <div class="div-left">
+                    <input type="password" name="password1" />
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="tc">
+                <input type="submit" value="提交" />
+                <input type="reset" value="重置" />
+            </div>
+            <p class="tr" style="padding-right: 20px;"><a href="login.html">返回登录</a></p>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/bs7.js"></script>
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <button id="btnStart"
+                    data-loading-text="正在处理中..." class="btn btn-info">
+                    开启进度条</button>
+                <button id="btnReset" class="btn btn-info">重置进度条<span id="spValue" class="badge">0</span></button>
+
+            </div>
+            <div class="col-xs-12">
+                <div class="progress" id="divProgress">
+                    <div id="divProgressInfo"
+                        class="progress-bar progress-bar-success progress-bar-striped active"
+                        role="progressbar">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe src="bs6.html" class="embed-responsive-item"></iframe>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</body>
+</html>

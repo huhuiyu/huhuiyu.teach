@@ -1,0 +1,127 @@
+﻿@{
+    Page.Title = "员工管理";
+    Layout = "~/_MainLayout.cshtml";
+}
+
+@section Style{
+    <style type="text/css">
+        #deleteForm {
+            display: none;
+        }
+    </style>
+}
+@section JavaScript{
+    <script type="text/javascript">
+        $(function () {
+            $("#btnDelete").click(function () {
+                $("#deleteForm").submit();
+            });
+        });
+
+        function toDelete(deptId, deptName) {
+            $("#deleteId").val(deptId);
+            $("#spanDelName").html(deptName);
+            $("#deleteDialog").modal({ "show": true });
+        }
+    </script>
+}
+
+<div id="deleteDialog" class="modal fade" data-backdrop="static" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                <div class="modal-titile">员工信息删除</div>
+            </div>
+            <div class="modal-body">
+                是否删除<span id="spanDelName"></span>？
+            </div>
+            <div class="modal-footer">
+                <button id="btnDelete" class="btn btn-danger">确认</button>
+                <button class="btn btn-info" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="~/Employee/Delete" method="post" id="deleteForm">
+    <input type="text" name="Employee.Eid" id="deleteId" />
+</form>
+
+<form class="form" action="~/Employee/Add" method="post">
+    <div class="row">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4">
+            <h1 class="text-center">员工信息添加</h1>
+            <div class="form-group">
+                <input type="text" class="form-control" name="Employee.Ename"
+                    placeholder="请输入员工名称" />
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-addon">请选择部门：</label>
+                    <select name="Employee.DeptId" class="form-control">
+                        @foreach (var dept in Model.DeptList)
+                        {
+                            <option value="@dept.DeptId">@dept.DeptName</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="radio-inline">性别：</label>
+                <label class="radio-inline">
+                    <input type="radio" name="Employee.Sex" value="m" checked="checked">男
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="Employee.Sex" value="f">女
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="Employee.Salary"
+                    placeholder="请输入员工工资" />
+            </div>
+            <div class="text-center">
+                <input type="submit" value="添加员工" class="btn btn-success" />
+                <input type="reset" value="重填信息" class="btn btn-info" />
+                <a class="btn btn-primary" href="~/Employee/">刷新数据</a>
+                <a class="btn btn-primary" href="~/Employee/List">查询数据</a>
+            </div>
+            <div class="text-danger text-center">
+                <span>@Model.Message</span>
+            </div>
+        </div>
+        <div class="col-xs-4"></div>
+    </div>
+
+</form>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>部门编号</th>
+            <th>员工姓名</th>
+            <th>性别</th>
+            <th>工资</th>
+            <th>入职日期</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.EmployeeList)
+        {
+            <tr>
+                <td>@emp.Eid</td>
+                <td>@emp.DeptId</td>
+                <td>@emp.Ename</td>
+                <td>@emp.Sex</td>
+                <td>@emp.Salary</td>
+                <td>@string.Format("{0:yyyy-MM-dd HH:mm:ss}", emp.Indate)</td>
+                <td>
+                    <a href="javascript:void(0);" onclick="toDelete('@emp.Eid','@emp.Ename')">删除</a>
+                    <a href="~/Employee/ToModify?Employee.Eid=@emp.Eid">修改</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,90 @@
+﻿@{
+    Page.Title = "分页查询";
+    Layout = "~/_MainLayout.cshtml";
+}
+@section JavaScript{
+    <script type="text/javascript">
+        function ToPage(pn) {
+            $("#pn").val(pn);
+            $("#pageForm").submit();
+        }
+    </script>
+}
+<form action="/Page" method="get" id="pageForm">
+    <input type="hidden" name="PageInfo.PageNumber" id="pn" />
+</form>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>工资</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.PageData)
+        {
+            <tr>
+                <td>@emp["eid"]</td>
+                <td>@emp["ename"]</td>
+                <td>@emp["salary"]</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="text-center">
+    <nav>
+        <ul class="pagination">
+            <li>
+                <a href="javascript:void(0)"
+                    onclick="ToPage(1);">第一页</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" 
+                        onclick="ToPage(@Model.PageInfo.PageNumber-1);">上一页</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">总记录：@Model.PageInfo.Count
+                    /
+                    分页数：@Model.PageInfo.PageCount
+                    -当前页：@Model.PageInfo.PageNumber
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" 
+                        onclick="ToPage(@Model.PageInfo.PageNumber+1);">下一页</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" 
+                        onclick="ToPage(@Model.PageInfo.PageCount);">最后一页</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>工资</th>
+            <th>入职日期</th>
+            <th>所属部门</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.PageEmpDept)
+        {
+            <tr>
+                <td>@emp["eid"]</td>
+                <td>@emp["ename"]</td>
+                <td>@emp["sex"]</td>
+                <td>@emp["salary"]</td>
+                <td>@string.Format("{0:yyyy-MM-dd}", emp["indate"])</td>
+                <td>@emp["deptname"]</td>
+            </tr>
+        }
+    </tbody>
+</table>

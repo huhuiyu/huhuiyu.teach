@@ -1,0 +1,35 @@
+﻿@{
+    Page.Title = "信息详情";
+    Layout = "~/_MainLayout.cshtml";
+}
+<div class="row">
+    <div class="col-md-3 col-sm-hidden"></div>
+    <div class="col-md-6 col-sm-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                @Model.Info.Title
+            </div>
+            <div class="panel-body">
+                <div>
+                    <span>@Model.Info.Nickname</span>
+                    <span>@string.Format("{0:yyyy-MM-dd}", Model.Info.Created)</span>
+                    <hr />
+                    @Model.Info.Content
+                </div>
+                <div>
+                    @foreach (var r in Model.Returns)
+                    {
+                        <hr />
+                        @r.Nickname
+                        <span>在：</span>
+                        @r.Created
+                        <span>说：</span>
+                        @r.Content
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-hidden"></div>
+</div>
+

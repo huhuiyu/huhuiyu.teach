@@ -1,0 +1,140 @@
+﻿body, div {
+    margin: 0px;
+    padding: 0px;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.top-div {
+    width: 100%;
+    background-color: #e6e6e7;
+    color: #6b6b6b;
+    font-size: small;
+    font-weight: bold;
+}
+
+.top-content-div {
+    width: 800px;
+    margin: 0px auto;
+    padding: 5px 0px;
+}
+
+    .top-content-div span:hover {
+        color: red;
+        cursor: pointer;
+    }
+
+.top-right {
+    text-align: right;
+}
+
+.mr {
+    margin-right: 10px;
+}
+
+.ml {
+    margin-left: 15px;
+}
+
+.content-div {
+    position: relative;
+    height: 800px;
+    width: 800px;
+    margin: 0px auto;
+    background-color: #f1f1f1;
+}
+
+.c1, .c2, .c3 {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    cursor: pointer;
+    transition: all linear 2s;
+}
+
+.c1 {
+    left: 80px;
+    top: 20px;
+    background-color: red;
+}
+
+    .c1:hover {
+        width: 220px;
+        height: 220px;
+        left: 70px;
+        top: 10px;
+    }
+
+.c2 {
+    left: 450px;
+    top: 120px;
+    background-color: blue;
+    z-index: 100;
+}
+
+    .c2:hover {
+        transform: rotate(360deg);
+    }
+
+.c3 {
+    left: 350px;
+    top: 300px;
+    background-color: yellow;
+    z-index: 50;
+}
+
+    .c3:hover {
+        background-color: gold;
+    }
+
+.left-ad {
+    position: fixed;
+    left: 0px;
+    top: 50px;
+    width: 1em;
+    border: 1px solid blue;
+    cursor: pointer;
+}
+
+.right-ad {
+    text-align:center;
+    position: fixed;
+    right: 0px;
+    top: 50px;
+    width: 6em;
+    border: 1px solid red;
+    color:blue;
+    cursor: pointer;
+    animation:MoveAd 5s linear infinite alternate;
+}
+
+.bottom-div {
+    padding: 10px 0px;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: #666666;
+    color: #ffffff;
+    z-index: 150;
+}
+
+
+@keyframes MoveAd
+{
+	0%   {top:50px}
+	25%  {top:100px}
+	50%  {top:150px}
+	75%  {top:100px}
+	100% {top:50px}
+}

@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="../css/common.css" />
+    <style type="text/css">
+        .form {
+            width: 100%;
+            height: 250px;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            display: inline-block;
+        }
+
+        .li-left {
+            width: 120px;
+            text-align: right;
+        }
+
+        .li-right {
+            width: 230px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <p class="tr"><a href="../index.html">返回</a></p>
+    <div class="center-div radius-div">
+        <form action="Login.aspx" method="post" class="form">
+            <h4 class="tc" style="padding-top: 20px;">登录XXX的网站</h4>
+            <ul>
+                <li class="li-left">用户名：</li>
+                <li class="li-right">
+                    <input type="text" name="username" placeholder="请输入用户名" />
+                </li>
+            </ul>
+            <ul>
+                <li class="li-left">密码：</li>
+                <li class="li-right">
+                    <input type="password" name="password" placeholder="请输入密码" />
+                </li>
+            </ul>
+            <div class="tc">
+                <input type="submit" value="提交" />
+                <input type="reset" value="重置" />
+            </div>
+            <p class="tr" style="padding-right: 20px;"><a href="reg.html">注册</a></p>
+        </form>
+    </div>
+</body>
+</html>

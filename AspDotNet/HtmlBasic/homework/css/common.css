@@ -1,0 +1,31 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    background-color: gray;
+}
+
+.center-div {
+    width: 400px;
+    margin: 50px auto;
+}
+
+.radius-div {
+    background-color: aqua;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+
+
+.tc {
+    text-align: center;
+}
+
+.tr {
+    text-align: right;
+}
+
+.tl {
+    text-align: left;
+}

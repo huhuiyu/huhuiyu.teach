@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMvc", "WebMvc\WebMvc.csproj", "{049C2C9E-CB23-4D5F-978D-BFD4AC55360E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeiBo", "WeiBo\WeiBo.csproj", "{368C010E-C998-4CF1-BBB4-2E1FEA55089E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{049C2C9E-CB23-4D5F-978D-BFD4AC55360E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{049C2C9E-CB23-4D5F-978D-BFD4AC55360E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{049C2C9E-CB23-4D5F-978D-BFD4AC55360E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{049C2C9E-CB23-4D5F-978D-BFD4AC55360E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{368C010E-C998-4CF1-BBB4-2E1FEA55089E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{368C010E-C998-4CF1-BBB4-2E1FEA55089E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{368C010E-C998-4CF1-BBB4-2E1FEA55089E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{368C010E-C998-4CF1-BBB4-2E1FEA55089E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

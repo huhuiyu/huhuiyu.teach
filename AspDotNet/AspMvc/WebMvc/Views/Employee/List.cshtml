@@ -1,0 +1,77 @@
+﻿@{
+    Page.Title = "员工查询";
+    Layout = "~/_MainLayout.cshtml";
+}
+<div role="tabpanel">
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#entity" role="tab" data-toggle="tab">实体查询</a></li>
+        <li role="presentation"><a href="#dictionary" role="tab" data-toggle="tab">字典查询</a></li>
+        <li role="presentation"><a href="#page" role="tab" data-toggle="tab">分页查询</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="entity">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>部门</th>
+                        <th>员工姓名</th>
+                        <th>性别</th>
+                        <th>工资</th>
+                        <th>入职日期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var emp in Model.EmpDeptList)
+                    {
+                        <tr>
+                            <td>@emp.Eid</td>
+                            <td>@emp.DeptName</td>
+                            <td>@emp.Ename</td>
+                            <td>@emp.Sex</td>
+                            <td>@emp.Salary</td>
+                            <td>@string.Format("{0:yyyy-MM-dd HH:mm:ss}", emp.Indate)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="dictionary">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>部门</th>
+                        <th>员工姓名</th>
+                        <th>性别</th>
+                        <th>工资</th>
+                        <th>入职日期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var emp in Model.Datas)
+                    {
+                        <tr>
+                            <td>@emp["eid"]</td>
+                            <td>@emp["deptname"]</td>
+                            <td>@emp["ename"]</td>
+                            <td>@emp["sex"]</td>
+                            <td>@emp["salary"]</td>
+                            <td>@string.Format("{0:yyyy-MM-dd HH:mm:ss}", emp["indate"])</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="page">
+            分页
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+

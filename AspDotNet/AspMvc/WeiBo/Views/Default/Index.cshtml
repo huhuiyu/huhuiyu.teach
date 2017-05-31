@@ -1,0 +1,107 @@
+﻿@{
+    Page.Title = "微博";
+    Layout = "~/_MainLayout.cshtml";
+    WeiBo.dal.entity.TblUser LoginUser
+        = (WeiBo.dal.entity.TblUser)Session["LoginUser"];
+}
+@section JavaScript{
+    <script type="text/javascript">
+        function ToPage(pn) {
+            $("#pn").val(pn);
+            $("#pageForm").submit();
+        }
+    </script>
+}
+<div class="text-right">
+    @if (LoginUser == null)
+    {
+        <form action="~/User/Login" method="post" class="form-inline">
+            <div class="form-group">
+                <label>
+                    用户名：
+                    <input type="text" name="User.Username"
+                        class="form-control" />
+                </label>
+            </div>
+            <div class="form-group">
+                <label>
+                    密码：
+                    <input type="password" name="User.Password"
+                        class="form-control" />
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="登陆" class="btn btn-info" />
+                <a href="~/User/ToReg" class="btn btn-info">注册</a>
+            </div>
+        </form>
+        <div class="text-right text-danger">@Model.Message</div>
+    }
+    @if (LoginUser != null)
+    {
+        <i class="fa fa-user-o"></i><span>-@LoginUser.Nickname</span>
+        <a href="~/User/Logout">退出登陆</a>
+    }
+
+</div>
+<div class="jumbotron">
+    <h3><i class="fa fa-user-o"></i>欢迎光临微博</h3>
+</div>
+<form action="/Default" method="get" id="pageForm">
+    <input type="hidden" name="PageInfo.PageNumber" id="pn" />
+</form>
+<table class="table table-hover">
+    <tbody>
+        @foreach (var message in Model.Messages)
+        {
+            <tr class="text-center">
+                <td>
+                    @message.Nickname
+                    <span>在</span>
+                    @string.Format("{0:yyyy-MM-dd HH:mm:dd}", message.Created)
+                    <span>发表了:</span>
+                    <a href="~/Message/Info?Info.Mid=@message.Mid">@message.Title</a>
+                    @message.Content
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="text-center">
+    <nav>
+        <ul class="pager">
+            <li>
+                <a href="javascript:void(0)"
+                    onclick="ToPage(1);">第一页</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" 
+                        onclick="ToPage(@Model.PageInfo.PageNumber-1);">上一页</a>
+            </li>
+            <li>
+                <span>总记录：@Model.PageInfo.Count
+                    /
+                    分页数：@Model.PageInfo.PageCount
+                    -当前页：@Model.PageInfo.PageNumber
+                    跳到第：
+                    <select onchange="ToPage(this.value);">
+                        @for (int i = 1; i <= Model.PageInfo.PageCount; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                    页
+                   
+                </span>
+            </li>
+            <li>
+                <a href="javascript:void(0)" 
+                        onclick="ToPage(@Model.PageInfo.PageNumber+1);">下一页</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" 
+                        onclick="ToPage(@Model.PageInfo.PageCount);">最后一页</a>
+            </li>
+        </ul>
+    </nav>
+</div>
