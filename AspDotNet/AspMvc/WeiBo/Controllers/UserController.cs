@@ -11,7 +11,6 @@ namespace WeiBo.Controllers
 {
     public class UserController : Controller
     {
-
         public ActionResult Index()
         {
             UserModel model = new UserModel();

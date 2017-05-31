@@ -10,20 +10,21 @@
                 @Model.Info.Title
             </div>
             <div class="panel-body">
-                <div>
+                <div class="bg-info">
                     <span>@Model.Info.Nickname</span>
                     <span>@string.Format("{0:yyyy-MM-dd}", Model.Info.Created)</span>
+                    说：
                     <hr />
-                    @Model.Info.Content
+                    <h2>@Model.Info.Content</h2>
                 </div>
-                <div>
+                <div class="bg-danger">
                     @foreach (var r in Model.Returns)
                     {
                         <hr />
                         @r.Nickname
                         <span>在：</span>
                         @r.Created
-                        <span>说：</span>
+                        <span>回复说：</span>
                         @r.Content
                     }
                 </div>

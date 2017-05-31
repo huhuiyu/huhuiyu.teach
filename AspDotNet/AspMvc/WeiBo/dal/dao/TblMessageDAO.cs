@@ -46,5 +46,26 @@ namespace WeiBo.dal.dao
                  where m.deleted='n' and m.mid=@p0", message.Mid);
         }
 
+        public static int QueryUserCount(TblUser user)
+        {
+            return (int)DBHelper.QueryOne(
+@"select count(*) from TblMessage where uid=@p0 and deleted='n'", user.Uid);
+        }
+
+        public static List<TblMessage> QueryUser(Page page, TblUser user)
+        {
+            if (page.PageNumber > 1)
+            {
+                return DBHelper.QueryRows(new TblMessage()
+, string.Format(@"select top {0} mid,title,content,created from TblMessage
+ where deleted='n' and uid=@p0 and mid not in
+ (select top {1} mid from TblMessage order by mid desc)
+ order by m.mid desc", page.PageSize, page.Skip), user.Uid);
+            }
+            return DBHelper.QueryRows(new TblMessage()
+, string.Format(@"select top {0} mid,title,content,created from TblMessage m
+ where m.deleted='n' and uid=@p0 order by mid desc", page.PageSize), user.Uid);
+        }
+
     }
 }

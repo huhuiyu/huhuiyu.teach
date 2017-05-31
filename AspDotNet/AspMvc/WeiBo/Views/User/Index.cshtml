@@ -25,13 +25,17 @@
             <div class="form-group">
                 <input type="submit" value="登陆" class="btn btn-info" />
                 <a href="~/User/ToReg" target="_top" class="btn btn-info">注册</a>
+                <a href="~/Default/" target="_top" class="btn btn-info">回首页</a>
             </div>
             <div class="form-group"><span class="text-danger">@Model.Message</span></div>
         </form>
     }
     else
     {
-        <i class="fa fa-user-o"></i><span>-@LoginUser.Nickname</span>
+        <a href="~/Message/List" target="_top">
+            <i class="fa fa-user-o"></i><span>-@LoginUser.Nickname</span>
+        </a>
+        <a href="~/Default/" target="_top">回首页</a>
         <a href="~/User/Logout">退出登陆</a>
     }
 </div>
