@@ -2,7 +2,47 @@
     Page.Title = "我的微博";
     Layout = "~/_MainLayout.cshtml";
 }
+@section JavaScript{
+    <script type="text/javascript">
+        function ToPage(pn) {
+            $("#pn").val(pn);
+            $("#pageForm").submit();
+        }
+    </script>
+}
+
+<form action="/Message/List" method="get" id="pageForm">
+    <input type="hidden" name="PageInfo.PageNumber" id="pn" />
+</form>
 <h2 class="text-center">我的微博</h2>
+<form action="~/Message/Add" method="post">
+    <div class="row">
+        <div class="col-xs-hidden col-sm-3"></div>
+        <div class="col-xs-12 col-sm-6">
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-addon">标题：</label>
+                    <input type="text" name="Info.Title" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label class="input-group-addon">
+                            内容：
+                        </label>
+                        <textarea class="form-control" name="Info.Content"
+                            rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <input type="submit" value="发表" class="btn btn-info" />
+                    <input type="reset" value="重写" class="btn btn-info" />
+                    <a href="~/Message/List" class="btn btn-info">刷新</a>
+                </div>
+            </div>
+            <div class="col-xs-hidden col-sm-3"></div>
+        </div>
+    </div>
+</form>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -26,10 +66,44 @@
                     @string.Format("{0:yyyy-MM-dd HH:mm:dd}", message.Created)
                 </td>
                 <td>
-                    <a href="~/Message/Info?Info.Mid=@message.Mid">查看</a>
+                    <a href="~/Message/Info?Info.Mid=@message.Mid" target="_blank">查看</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
-
+@if (Model.PageInfo.PageCount > 1)
+{
+    <nav class="text-center">
+        <ul class="pager">
+            <li>
+                <a href="javascript:void(0)" onclick="ToPage(1);">第一页</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" onclick="ToPage(@Model.PageInfo.PageNumber-1);">上一页</a>
+            </li>
+            <li>
+                <span>总记录：@Model.PageInfo.Count
+                    /
+                    分页数：@Model.PageInfo.PageCount
+                    -当前页：@Model.PageInfo.PageNumber
+                    跳到第：
+                    <select onchange="ToPage(this.value);">
+                        @for (int i = 1; i <= Model.PageInfo.PageCount; i++)
+                        {
+                            <option value="@i">@i</option>
+                        }
+                    </select>
+                    页
+                   
+                </span>
+            </li>
+            <li>
+                <a href="javascript:void(0)" onclick="ToPage(@Model.PageInfo.PageNumber+1);">下一页</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" onclick="ToPage(@Model.PageInfo.PageCount);">最后一页</a>
+            </li>
+        </ul>
+    </nav>
+}

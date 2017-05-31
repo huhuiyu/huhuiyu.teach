@@ -13,7 +13,7 @@ namespace WeiBo.Controllers
     {
         public ActionResult Index(DefaultModel model)
         {
-            model.PageInfo.PageSize = 20;
+            model.PageInfo.PageSize = 7;
             model.PageInfo.Count = TblMessageDAO.QueryCount();
             model.Messages = TblMessageDAO.Query(model.PageInfo);
             return View(model);

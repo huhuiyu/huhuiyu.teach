@@ -61,7 +61,7 @@ namespace WeiBo.Controllers
         public ActionResult Logout()
         {
             Session.Remove("LoginUser");
-            return RedirectToAction("Index", "User");
+            return RedirectToAction("Index", "Default");
         }
 
     }

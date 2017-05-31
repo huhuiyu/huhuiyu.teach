@@ -31,5 +31,26 @@ namespace WeiBo.Controllers
             return View(model);
         }
 
+        public ActionResult Add(MessageModel model)
+        {
+            TblUser user = (TblUser)Session["LoginUser"];
+            if (user == null)
+            {
+                return RedirectToAction("Index", "Default");
+            }
+            try
+            {
+                model.Info.Uid = user.Uid;
+                TblMessageDAO.Add(model.Info);
+            }
+            catch (Exception ex)
+            {
+                model.Message = ex.Message;
+            }
+            model.PageInfo.Count = TblMessageDAO.QueryUserCount(user);
+            model.MessageList = TblMessageDAO.QueryUser(model.PageInfo, user);
+            return View("List", model);
+        }
+
     }
 }

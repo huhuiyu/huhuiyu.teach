@@ -9,6 +9,13 @@ namespace WeiBo.dal.dao
 {
     public class TblMessageDAO
     {
+        public static int Add(TblMessage message)
+        {
+            return DBHelper.Update(
+@"insert into TblMessage(uid,title,content) values(@p0,@p1,@p2)"
+               , message.Uid, message.Title, message.Content);
+        }
+
         public static int QueryCount()
         {
             return (int)DBHelper.QueryOne(
@@ -60,7 +67,7 @@ namespace WeiBo.dal.dao
 , string.Format(@"select top {0} mid,title,content,created from TblMessage
  where deleted='n' and uid=@p0 and mid not in
  (select top {1} mid from TblMessage order by mid desc)
- order by m.mid desc", page.PageSize, page.Skip), user.Uid);
+ order by mid desc", page.PageSize, page.Skip), user.Uid);
             }
             return DBHelper.QueryRows(new TblMessage()
 , string.Format(@"select top {0} mid,title,content,created from TblMessage m
