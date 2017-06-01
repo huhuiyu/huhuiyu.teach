@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Reflection;
 
-namespace WebBo.dal.dao
+namespace WeiBo.dal.dao
 {
     public class DBHelper
     {

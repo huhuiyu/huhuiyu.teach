@@ -1,6 +1,9 @@
 ﻿@{
     Page.Title = "信息详情";
     Layout = "~/_MainLayout.cshtml";
+    WeiBo.dal.entity.TblUser LoginUser
+       = (WeiBo.dal.entity.TblUser)Session["LoginUser"];
+    
 }
 <div class="row">
     <div class="col-md-3 col-sm-hidden"></div>
@@ -9,8 +12,8 @@
             <div class="panel-heading">
                 @Model.Info.Title
             </div>
-            <div class="panel-body">
-                <div class="bg-info">
+            <div class="panel-body bg-info">
+                <div>
                     <span>@Model.Info.Nickname</span>
                     <span>@string.Format("{0:yyyy-MM-dd}", Model.Info.Created)</span>
                     说：
@@ -28,8 +31,30 @@
                         @r.Content
                     }
                 </div>
+                @if (LoginUser != null)
+                {
+                    <hr />
+                    <div class="text-center">
+                        <form method="post" action="~/Message/AddReturn"
+                            class="form-horizontal">
+                            <input type="hidden" name="ReturnInfo.Mid"
+                                value="@Model.Info.Mid"/>
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <input type="text" name="ReturnInfo.Content"
+                                        class="form-control" />
+                                </div>
+                                <div class="col-sm-2 text-left">
+                                    <input type="submit" value="回复"
+                                        class="btn btn-primary" />
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                }
             </div>
         </div>
+        <div class="text-center text-danger">@Model.Message</div>
     </div>
     <div class="col-md-3 col-sm-hidden"></div>
 </div>

@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace WebBo.dal.dao
+namespace WeiBo.dal.dao
 {
     public class DBConn
     {

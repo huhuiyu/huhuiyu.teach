@@ -52,5 +52,16 @@ namespace WeiBo.Controllers
             return View("List", model);
         }
 
+        public ActionResult AddReturn(MessageModel model)
+        {
+            TblUser user = (TblUser)Session["LoginUser"];
+            if (user != null)
+            {
+                model.ReturnInfo.Uid = user.Uid;
+                TblReturnDAO.Add(model.ReturnInfo);
+            }
+            return Redirect("/Message/Info?Info.Mid=" + model.ReturnInfo.Mid);
+        }
+
     }
 }

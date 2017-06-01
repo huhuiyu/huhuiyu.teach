@@ -12,11 +12,15 @@ namespace WeiBo.Models
         public Page PageInfo { get; set; }
         public List<TblMessage> MessageList { get; set; }
         public List<TblReturn> Returns { get; set; }
+        public TblReturn ReturnInfo { get; set; }
+
         public string Message { get; set; }
 
         public MessageModel()
         {
             PageInfo = new Page();
+            Info = new TblMessage();
+            ReturnInfo = new TblReturn();
             MessageList = new List<TblMessage>();
         }
     }
