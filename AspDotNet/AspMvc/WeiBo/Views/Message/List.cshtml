@@ -8,8 +8,53 @@
             $("#pn").val(pn);
             $("#pageForm").submit();
         }
+
+        $(function () {
+            $("#btnDel").click(function () {
+                $("#delForm").submit();
+            });
+        });
+
+        function ToDelete(mid, title) {
+            $("#delId").val(mid);
+            $("#spDel").html(title);
+            $("#delDialog").modal({ "show": true });
+        }
+
     </script>
 }
+
+<!-- 删除微博确认对话框 -->
+<div id="delDialog" class="modal fade" data-backdrop="static"
+    tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+                <div class="modal-title">删除微博</div>
+            </div>
+            <div class="modal-body">
+                是否删除<span id="spDel"></span>?
+            </div>
+            <div class="modal-footer">
+                <button id="btnDel"
+                    class="btn btn-danger">
+                    确定</button>
+                <button class="btn btn-info"
+                    data-dismiss="modal">
+                    取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 删除微博的表单 -->
+<form action="~/Message/Delete" method="get" id="delForm">
+    <input type="hidden" name="Info.Mid" id="delId" />
+</form>
+
 
 <form action="/Message/List" method="get" id="pageForm">
     <input type="hidden" name="PageInfo.PageNumber" id="pn" />
@@ -67,6 +112,7 @@
                 </td>
                 <td>
                     <a href="~/Message/Info?Info.Mid=@message.Mid" target="_blank">查看</a>
+                    <a href="javascript:void(0)" onclick="ToDelete('@message.Mid','@message.Title')">删除</a>
                 </td>
             </tr>
         }

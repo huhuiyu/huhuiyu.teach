@@ -31,7 +31,7 @@ namespace WeiBo.dal.dao
  from TblMessage m
  inner join TblUser u on m.uid=u.uid
  where m.deleted='n' and m.mid not in
- (select top {1} mid from TblMessage order by mid desc)
+ (select top {1} mid from TblMessage where m.deleted='n' order by mid desc)
  order by m.mid desc", page.PageSize, page.Skip));
             }
             return DBHelper.QueryRows(new TblMessage()
@@ -65,12 +65,20 @@ namespace WeiBo.dal.dao
                 return DBHelper.QueryRows(new TblMessage()
 , string.Format(@"select top {0} mid,title,content,created from TblMessage
  where deleted='n' and uid=@p0 and mid not in
- (select top {1} mid from TblMessage order by mid desc)
+ (select top {1} mid from TblMessage where uid=@p0 and deleted='n'  
+ order by mid desc)
  order by mid desc", page.PageSize, page.Skip), user.Uid);
             }
             return DBHelper.QueryRows(new TblMessage()
-, string.Format(@"select top {0} mid,title,content,created from TblMessage m
- where m.deleted='n' and uid=@p0 order by mid desc", page.PageSize), user.Uid);
+, string.Format(@"select top {0} mid,title,content,created from TblMessage
+ where deleted='n' and uid=@p0 order by mid desc", page.PageSize), user.Uid);
+        }
+
+        public static int Delete(TblMessage message)
+        {
+            return DBHelper.Update(
+@"update TblMessage set deleted='y' where mid=@p0 and uid=@p1"
+, message.Mid, message.Uid);
         }
 
     }

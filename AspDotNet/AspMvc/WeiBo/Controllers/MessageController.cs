@@ -63,5 +63,19 @@ namespace WeiBo.Controllers
             return Redirect("/Message/Info?Info.Mid=" + model.ReturnInfo.Mid);
         }
 
+        public ActionResult Delete(MessageModel model)
+        {
+            TblUser user = (TblUser)Session["LoginUser"];
+            if (user == null)
+            {
+                return RedirectToAction("Index", "Default");
+            }
+            model.Info.Uid = user.Uid;
+            TblMessageDAO.Delete(model.Info);
+            return RedirectToAction("List", "Message");
+
+        }
+
+
     }
 }
