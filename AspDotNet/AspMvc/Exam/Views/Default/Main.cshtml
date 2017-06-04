@@ -1,0 +1,9 @@
+﻿@{
+    Page.Title = "商品管理";
+    Layout = "~/_MainLayout.cshtml";
+    Exam.dal.entity.TblUser user = (Exam.dal.entity.TblUser)Session["LoginUser"];
+}
+<h3 class="text-right">当前用户：<span>@user.Nickname</span>
+    <a href="~/Default/Logout">安全退出</a>
+</h3>
+<hr />

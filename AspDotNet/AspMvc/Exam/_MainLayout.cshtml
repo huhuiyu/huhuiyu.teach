@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>@Page.Title</title>
+    <link rel="stylesheet" href="~/Content/lib/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/lib/css/font-awesome.min.css" />
+    @RenderSection("Style", false)
+    <script type="text/javascript" src="~/Scripts/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/lib/bootstrap.min.js"></script>
+    @RenderSection("JavaScript", false)
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>
