@@ -49,12 +49,37 @@ namespace Exam.Controllers
             {
                 return RedirectToAction("Index", "Default");
             }
+            model.PageInfo.Count = TblGoodsDAO.QueryCount();
+            model.GoodsList = TblGoodsDAO.QueryPage(model.PageInfo);
             return View(model);
         }
 
+        public ActionResult Add(DefaultModel model)
+        {
+            TblUser user = (TblUser)Session["LoginUser"];
+            if (user == null)
+            {
+                return RedirectToAction("Index", "Default");
+            }
+            model.Goods.Uid = user.Uid;
+            TblGoodsDAO.Add(model.Goods);
+            model.PageInfo.Count = TblGoodsDAO.QueryCount();
+            model.GoodsList = TblGoodsDAO.QueryPage(model.PageInfo);
+            return View("Main", model);
+        }
 
-
-
+        public ActionResult Delete(DefaultModel model)
+        {
+            TblUser user = (TblUser)Session["LoginUser"];
+            if (user == null)
+            {
+                return RedirectToAction("Index", "Default");
+            }
+            TblGoodsDAO.Delete(model.Goods);
+            model.PageInfo.Count = TblGoodsDAO.QueryCount();
+            model.GoodsList = TblGoodsDAO.QueryPage(model.PageInfo);
+            return View("Main", model);
+        }
 
     }
 }

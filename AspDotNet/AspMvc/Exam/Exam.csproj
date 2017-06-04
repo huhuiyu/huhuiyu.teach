@@ -107,6 +107,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="dal\dao\DBConn.cs" />
     <Compile Include="dal\dao\DBHelper.cs" />
+    <Compile Include="dal\dao\TblGoodsDAO.cs" />
     <Compile Include="dal\dao\TblUserDAO.cs" />
     <Compile Include="dal\entity\Page.cs" />
     <Compile Include="dal\entity\TblGoods.cs" />

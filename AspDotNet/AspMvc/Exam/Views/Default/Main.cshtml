@@ -3,7 +3,148 @@
     Layout = "~/_MainLayout.cshtml";
     Exam.dal.entity.TblUser user = (Exam.dal.entity.TblUser)Session["LoginUser"];
 }
+
+@section JavaScript{
+    <script type="text/javascript">
+        function ToPage(pn) {
+            $("#pn").val(pn);
+            $("#pageForm").submit();
+        }
+
+        $(function () {
+            $("#btnDel").click(function () {
+                $("#delForm").submit();
+            });
+        });
+
+        function ToDelete(gid, gname) {
+            $("#delId").val(gid);
+            $("#spDel").html(gname);
+            $("#delDialog").modal({ "show": true });
+        }
+
+    </script>
+}
+
+<div id="delDialog" class="modal fade" data-backdrop="static"
+    tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+                <div class="modal-title">删除微博</div>
+            </div>
+            <div class="modal-body">
+                是否删除<span id="spDel"></span>?
+            </div>
+            <div class="modal-footer">
+                <button id="btnDel"
+                    class="btn btn-danger">
+                    确定</button>
+                <button class="btn btn-info"
+                    data-dismiss="modal">
+                    取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action="~/Default/Delete" method="get" id="delForm">
+    <input type="hidden" name="Goods.Gid" id="delId" />
+</form>
+
+<form action="/Default/Main" method="get" id="pageForm">
+    <input type="hidden" name="PageInfo.PageNumber" id="pn" />
+</form>
+
 <h3 class="text-right">当前用户：<span>@user.Nickname</span>
     <a href="~/Default/Logout">安全退出</a>
 </h3>
 <hr />
+<div class="row">
+    <div class="col-sm-hidden col-md-4"></div>
+    <div class="col-sm-12 col-md-4">
+        <form action="~/Default/Add" method="post">
+            @*<div class="text-center bg-primary h3">添加商品</div>*@
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-addon">商品名称</label>
+                    <input type="text" name="Goods.Gname"
+                        class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-addon">商品成本</label>
+                    <input type="text" name="Goods.Cost"
+                        class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-addon">商品售价</label>
+                    <input type="text" name="Goods.Price"
+                        class="form-control" />
+                </div>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="添加" class="btn btn-primary" />
+                <input type="reset" value="重置" class="btn btn-danger" />
+            </div>
+            <div class="text-center text-danger">@Model.Message</div>
+        </form>
+    </div>
+    <div class="col-sm-hidden col-md-4"></div>
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>成本</th>
+            <th>售价</th>
+            <th>商品信息录入人员</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var goods in Model.GoodsList)
+        {
+            <tr>
+                <td>@goods.Gid</td>
+                <td>@goods.Gname</td>
+                <td>@goods.Cost</td>
+                <td>@goods.Price</td>
+                <td>@goods.Nickname<span>(</span>@goods.Uid<span>)</span></td>
+                <td>
+                    <a href="javascript:void(0)" onclick="ToDelete('@goods.Gid','@goods.Gname')">删除</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<nav class="text-center">
+    <ul class="pager">
+        <li>
+            <a href="javascript:void(0)" onclick="ToPage(1);">第一页</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" onclick="ToPage(@Model.PageInfo.PageNumber-1);">上一页</a>
+        </li>
+        <li>
+            <span>
+                总记录：@Model.PageInfo.Count
+                总页数：@Model.PageInfo.PageCount
+                当前页：@Model.PageInfo.PageNumber
+            </span>
+        </li>
+        <li>
+            <a href="javascript:void(0)" onclick="ToPage(@Model.PageInfo.PageNumber+1);">下一页</a>
+        </li>
+        <li>
+            <a href="javascript:void(0)" onclick="ToPage(@Model.PageInfo.PageCount);">最后一页</a>
+        </li>
+    </ul>
+</nav>
