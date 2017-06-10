@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeiBo", "WeiBo\WeiBo.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exam", "Exam\Exam.csproj", "{F432F070-DC1B-494A-87C9-E38CB8357CD9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileUpload", "FileUpload\FileUpload.csproj", "{39C3F935-A701-48F3-BD7F-CB155B842E92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{F432F070-DC1B-494A-87C9-E38CB8357CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F432F070-DC1B-494A-87C9-E38CB8357CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F432F070-DC1B-494A-87C9-E38CB8357CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39C3F935-A701-48F3-BD7F-CB155B842E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39C3F935-A701-48F3-BD7F-CB155B842E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39C3F935-A701-48F3-BD7F-CB155B842E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39C3F935-A701-48F3-BD7F-CB155B842E92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

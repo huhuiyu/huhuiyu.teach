@@ -1,0 +1,124 @@
+﻿@{
+    Page.Title = "文件上传";
+    Layout = "~/_MainLayout.cshtml";
+}
+@section JavaScript{
+    <script type="text/javascript">
+        $(function () {
+            $("#divInfo").hide();
+            $("#divInfo").fadeIn(5000);
+        });
+
+        function ToPage(pn) {
+            $("#pn").val(pn);
+            $("#pageForm").submit();
+        }
+
+        function DownLoad(fid) {
+            $("#downId").val(fid);
+            $("#downForm").submit();
+        }
+    </script>
+}
+<!-- 分页表单 -->
+<form action="/Default/" method="get" id="pageForm">
+    <input type="hidden" name="PageInfo.PageNumber" id="pn" />
+</form>
+
+
+<div id="divInfo">
+    <h1 class="jumbotron text-center">
+        <i class="fa fa-file"></i>文件上传演示 <small>开发：胡辉煜</small>
+    </h1>
+</div>
+<!-- 文件下载表单 -->
+<form action="~/Default/DownLoad" method="post" id="downForm" target="_blank">
+    <input type="hidden" id="downId" name="UpFile.Fid" />
+</form>
+
+<!-- 文件上传表单 -->
+<div class="row">
+    <div class="col-sm-hidden col-md-4"></div>
+    <div class="col-sm-12 col-md-4">
+        <h1 class="text-center bg-primary">我要上传</h1>
+        <form action="~/Default/Add" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-addon">文件</label>
+                    <input type="file" name="uploadFile"
+                        class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-addon">描述</label>
+                    <input type="text" name="UpFile.Description"
+                        class="form-control" />
+                </div>
+            </div>
+            <div class="text-right">
+                <input type="submit" value="上传" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-hidden col-md-4"></div>
+</div>
+
+<div class="text-center text-danger">
+    @Model.ActionMessage
+</div>
+<!-- 文件信息列表 -->
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>文件名</th>
+            <th>文件描述</th>
+            <th>文件类型</th>
+            <th>文件大小</th>
+            <th>上传时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var f in Model.Files)
+        {
+            <tr>
+                <td>@f.Filename</td>
+                <td>@f.Description</td>
+                <td>@f.ContentType</td>
+                <td>@f.Size</td>
+                <td>@f.UploadDate</td>
+                <td>
+                    <a href="javascript:void(0);" onclick="DownLoad(@f.Fid)">下载</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.PageInfo.PageCount > 1)
+{
+    <nav class="text-center">
+        <ul class="pager">
+            <li>
+                <a href="javascript:void(0)" onclick="ToPage(1);">第一页</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" onclick="ToPage(@Model.PageInfo.PageNumber-1);">上一页</a>
+            </li>
+            <li>
+                <div>
+                    <span>总记录：@Model.PageInfo.Count</span>
+                    <span>分页数：@Model.PageInfo.PageCount</span>
+                    <span>当前页：@Model.PageInfo.PageNumber</span>
+                </div>
+            </li>
+            <li>
+                <a href="javascript:void(0)" onclick="ToPage(@Model.PageInfo.PageNumber+1);">下一页</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" onclick="ToPage(@Model.PageInfo.PageCount);">最后一页</a>
+            </li>
+        </ul>
+    </nav>
+}
+
