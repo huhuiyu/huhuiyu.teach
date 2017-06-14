@@ -58,6 +58,7 @@
             </div>
             <div class="text-right">
                 <input type="submit" value="上传" class="btn btn-primary" />
+                <a href="~/Default/ToUpFiles" class="btn btn-primary">多文件上传</a>
             </div>
         </form>
     </div>
@@ -90,6 +91,11 @@
                 <td>@f.UploadDate</td>
                 <td>
                     <a href="javascript:void(0);" onclick="DownLoad(@f.Fid)">下载</a>
+                    @if (f.ContentType.Length > 5
+                        && f.ContentType.Substring(0, 5).Equals("image"))
+                    {
+                        <a href="~/Default/ShowImage?UpFile.Fid=@f.Fid">查看图片</a>
+                    }
                 </td>
             </tr>
         }

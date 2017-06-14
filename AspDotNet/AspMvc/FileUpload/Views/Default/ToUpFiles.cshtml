@@ -1,0 +1,55 @@
+﻿@{
+    Page.Title = "多文件上传";
+    Layout = "~/_MainLayout.cshtml";
+}
+@section JavaScript{
+    <script type="text/javascript">
+        var ActionCode = "@Model.ActionCode";
+        if (ActionCode == "200") {
+            alert("文件上传成功！");
+        } else if (ActionCode == "500") {
+            alert("文件上传失败，请稍后重试！");
+        }
+    </script>
+}
+<div class="row">
+    <div class="col-sm-hidden col-md-4"></div>
+    <div class="col-sm-12 col-md-4">
+        <h1 class="text-center bg-primary">我要上传</h1>
+        <form action="~/Default/AddFiles" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-addon">描述</label>
+                    <input type="text" name="UpFile.Description"
+                        class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-addon">文件1</label>
+                    <input type="file" name="uploadFile"
+                        class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-addon">文件2</label>
+                    <input type="file" name="uploadFile"
+                        class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <label class="input-group-addon">文件3</label>
+                    <input type="file" name="uploadFile"
+                        class="form-control" />
+                </div>
+            </div>
+            <div class="text-right">
+                <input type="submit" value="上传" class="btn btn-primary" />
+                <a href="~/Default" class="btn btn-primary">返回</a>
+            </div>
+        </form>
+    </div>
+    <div class="col-sm-hidden col-md-4"></div>
+</div>
