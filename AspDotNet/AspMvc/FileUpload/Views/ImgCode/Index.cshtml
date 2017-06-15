@@ -1,0 +1,22 @@
+﻿@{
+    Page.Title = "图片校验码";
+    Layout = "~/_MainLayout.cshtml";
+}
+@section JavaScript{
+    <script type="text/javascript">
+        $(function () {
+            $("#imgCode").click(function () {
+                $("#imgCode").attr("src",
+                    "/ImgCode/Code?ts" + new Date().getTime());
+            });
+        });
+    </script>
+}
+<form action="~/ImgCode/CheckCode" method="post">
+    <div class="text-center">
+        <span>请输入校验码：</span>
+        <input type="text" name="code" />
+        <img src="~/ImgCode/Code" id="imgCode" />
+        <input type="submit" value="确定" />
+    </div>
+</form>

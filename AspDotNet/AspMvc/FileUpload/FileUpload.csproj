@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\ImgCodeController.cs" />
     <Compile Include="dal\dao\DBConn.cs" />
     <Compile Include="dal\dao\DBHelper.cs" />
     <Compile Include="dal\dao\TblFilesDAO.cs" />
@@ -184,6 +185,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Default\ToUpFiles.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ImgCode\Index.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
